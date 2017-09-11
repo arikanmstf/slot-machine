@@ -67,15 +67,29 @@ class SlotMachine extends Component {
     if (colsFixed) {
       lines.map((line, index) => {
         PAY_TYPES.map((type) => {
-          if (
-            (line.toString() === type.SYMBOLS.toString()) || // exactly same
-            (arrayContainsArray(line, type.SYMBOLS)) || // any
-            (arrayContainsAny(line, type.SYMBOLS)) // combination
-          ) {
-            wins.push({
-              ...type,
-              winLine: { ...line, lineNumber: index }
-            });
+          if (line.toString() === type.SYMBOLS.toString()) { // exactly same
+            if (type.LINE.value === index) {
+              wins.push({
+                ...type,
+                winLine: { ...line, lineNumber: index }
+              });
+            }
+          } else if (type.LINE.value < 0) { //
+            if (type.COMBINATION) {
+              if (arrayContainsArray(line, type.SYMBOLS)) {
+                wins.push({
+                  ...type,
+                  winLine: { ...line, lineNumber: index }
+                });
+              } else if (type.ISOR) { //
+                if (arrayContainsAny(line, type.SYMBOLS)) {
+                  wins.push({
+                    ...type,
+                    winLine: { ...line, lineNumber: index }
+                  });
+                }
+              }
+            }
           }
           return type;
         });
