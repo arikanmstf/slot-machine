@@ -69,7 +69,8 @@ class SlotMachine extends Component {
         PAY_TYPES.map((type) => {
           if (!line.added) {
             if (type.LINE.value >= 0) { // exactly same line
-              if ((line.toString() === type.SYMBOLS.toString())) {
+              console.log(type, line);
+              if ((line.toString() === type.SYMBOLS.toString()) && type.LINE.value === index) {
                 wins.push({
                   ...type,
                   winLine: { ...line, lineNumber: index }
@@ -77,7 +78,7 @@ class SlotMachine extends Component {
                 line.added = true; // eslint-disable-line no-param-reassign
               }
             } else if (!type.COMBINATION) {
-              if ((line.toString() === type.SYMBOLS.toString())) { // equals
+              if ((line.toString() === type.SYMBOLS.toString()) && type.LINE.value < 0) { // equals
                 wins.push({
                   ...type,
                   winLine: { ...line, lineNumber: index }

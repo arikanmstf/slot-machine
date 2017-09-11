@@ -1,7 +1,7 @@
 {
   "name": "slot-machine",
   "description": "Slot Machine Game with react",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "scripts": {
     "clean": "rm -rf ./dist/*",
     "lint": "eslint --max-warnings 10 --ext .js src/scripts",
