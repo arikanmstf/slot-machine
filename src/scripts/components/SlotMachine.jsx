@@ -68,7 +68,7 @@ class SlotMachine extends Component {
       lines.map((line, index) => {
         PAY_TYPES.map((type) => {
           if (!line.added) {
-            if (line.toString() === type.SYMBOLS.toString()) { // exactly same
+            if (line.toString() === type.SYMBOLS.toString() && type.LINE.value === index) { // exactly same
               wins.push({
                 ...type,
                 winLine: { ...line, lineNumber: index }
