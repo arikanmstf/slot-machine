@@ -1,4 +1,4 @@
 const Config = {
-  homeUrl: '/pixi/'
+  homeUrl: '/slot-machine/'
 };
 module.exports = Config;
