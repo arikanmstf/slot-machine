@@ -1,0 +1,45 @@
+.balance-text {
+  color: #dddddd;
+  width: 300px;
+  float: left;
+  margin-left: 0px;
+  margin-top: 30px;
+
+  input {
+    width: 100px;
+    padding: 10px;
+    margin: 0 auto;
+    font-size: 22px;
+  }
+
+  .label {
+    font-size: 16px;
+  }
+
+  .btn-spin {
+    padding: 10px;
+    background-color: #ff3f3f;
+    width: 100px;
+    font-size:24px;
+    color: #fdfdfd;
+
+    &[disabled] {
+      background-color: #ffb8b8;
+      cursor: wait;
+    }
+  }
+
+  .reel-selector {
+    .select-box {
+      padding: 20px;
+      font-size: 14px;
+      width: 100%;
+      cursor: pointer;
+    }
+
+    width: 25%;
+    float: left;
+    padding: 5px 5px;
+    border-right: 1px solid #dedede;
+  }
+}

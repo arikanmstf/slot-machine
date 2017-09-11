@@ -1,0 +1,52 @@
+{
+  "parser": "babel-eslint",
+  "extends": "airbnb",
+  "rules": {
+    "comma-dangle": 0,
+    "no-undef": 0,
+    "class-methods-use-this": 0,
+    "import/no-unresolved": 0,
+    "import/no-extraneous-dependencies": 0,
+    "import/extensions": [
+      2,
+      {
+        "js": "never",
+        "jsx": "never"
+      }
+    ],
+    "no-multiple-empty-lines": [
+      "error",
+      {
+        "max": 1
+      }
+    ],
+    "arrow-parens": [
+      "error",
+      "always"
+    ],
+    "no-plusplus": [
+      2,
+      {
+        "allowForLoopAfterthoughts": true
+      }
+    ],
+    "max-len": ["error", 120, 2, {
+      "ignoreUrls": true,
+      "ignoreComments": true,
+      "ignoreRegExpLiterals": true,
+      "ignoreStrings": true,
+      "ignoreTemplateLiterals": true
+    }],
+    "no-unused-vars": ["error", {
+      "ignoreRestSiblings": true
+    }],
+    "quotes": ["error", "single", { "allowTemplateLiterals": true }],
+    "new-cap": [0],
+    "arrow-body-style": [0],
+    "react/forbid-prop-types": [0],
+    "jsx-a11y/no-noninteractive-element-interactions": [0],
+    "jsx-a11y/no-static-element-interactions": [0],
+    "jsx-a11y/href-no-hash": "off",
+    "react/require-default-props": [0]
+  }
+}
