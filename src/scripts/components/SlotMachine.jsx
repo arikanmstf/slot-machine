@@ -67,26 +67,29 @@ class SlotMachine extends Component {
     if (colsFixed) {
       lines.map((line, index) => {
         PAY_TYPES.map((type) => {
-          if (line.toString() === type.SYMBOLS.toString()) { // exactly same
-            if (type.LINE.value === index) {
+          if (!line.added) {
+            if (line.toString() === type.SYMBOLS.toString()) { // exactly same
               wins.push({
                 ...type,
                 winLine: { ...line, lineNumber: index }
               });
-            }
-          } else if (type.LINE.value < 0) { //
-            if (type.COMBINATION) {
-              if (arrayContainsArray(line, type.SYMBOLS)) {
-                wins.push({
-                  ...type,
-                  winLine: { ...line, lineNumber: index }
-                });
-              } else if (type.ISOR) { //
-                if (arrayContainsAny(line, type.SYMBOLS)) {
+              line.added = true; // eslint-disable-line no-param-reassign
+            } else if (type.LINE.value < 0) { //
+              if (type.COMBINATION) {
+                if (arrayContainsArray(line, type.SYMBOLS)) {
                   wins.push({
                     ...type,
                     winLine: { ...line, lineNumber: index }
                   });
+                  line.added = true; // eslint-disable-line no-param-reassign
+                } else if (type.ISOR) { //
+                  if (arrayContainsAny(line, type.SYMBOLS)) {
+                    wins.push({
+                      ...type,
+                      winLine: { ...line, lineNumber: index }
+                    });
+                    line.added = true; // eslint-disable-line no-param-reassign
+                  }
                 }
               }
             }
@@ -98,6 +101,7 @@ class SlotMachine extends Component {
     }
 
     this.setState({ winnerLines: wins });
+    console.log(wins);
     this.props.updateWinners(wins);
 
     lines = [ // RESET LINES
