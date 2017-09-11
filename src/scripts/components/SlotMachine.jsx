@@ -68,28 +68,36 @@ class SlotMachine extends Component {
       lines.map((line, index) => {
         PAY_TYPES.map((type) => {
           if (!line.added) {
-            if (line.toString() === type.SYMBOLS.toString() && type.LINE.value === index) { // exactly same
-              wins.push({
-                ...type,
-                winLine: { ...line, lineNumber: index }
-              });
-              line.added = true; // eslint-disable-line no-param-reassign
-            } else if (type.LINE.value < 0) { //
-              if (type.COMBINATION) {
-                if (arrayContainsArray(line, type.SYMBOLS)) {
+            if (type.LINE.value >= 0) { // exactly same line
+              if ((line.toString() === type.SYMBOLS.toString())) {
+                wins.push({
+                  ...type,
+                  winLine: { ...line, lineNumber: index }
+                });
+                line.added = true; // eslint-disable-line no-param-reassign
+              }
+            } else if (!type.COMBINATION) {
+              if ((line.toString() === type.SYMBOLS.toString())) { // equals
+                wins.push({
+                  ...type,
+                  winLine: { ...line, lineNumber: index }
+                });
+                line.added = true; // eslint-disable-line no-param-reassign
+              }
+            } else if (type.COMBINATION) { // any line
+              if (arrayContainsArray(line, type.SYMBOLS)) {
+                wins.push({
+                  ...type,
+                  winLine: { ...line, lineNumber: index }
+                });
+                line.added = true; // eslint-disable-line no-param-reassign
+              } else if (type.ISOR) { //
+                if (arrayContainsAny(line, type.SYMBOLS)) {
                   wins.push({
                     ...type,
                     winLine: { ...line, lineNumber: index }
                   });
                   line.added = true; // eslint-disable-line no-param-reassign
-                } else if (type.ISOR) { //
-                  if (arrayContainsAny(line, type.SYMBOLS)) {
-                    wins.push({
-                      ...type,
-                      winLine: { ...line, lineNumber: index }
-                    });
-                    line.added = true; // eslint-disable-line no-param-reassign
-                  }
                 }
               }
             }
